@@ -2,6 +2,64 @@
 # tasks file for toolchain-setup
 
 
+# Create users & groups
+
+- name: Creat sabnzbd user
+  user:
+    name: sabnzbd
+    state: present
+    comment: sabnzbd user
+    groups: docker
+    append: yes
+
+- name: Creat sonarr user
+  user:
+    name: sonarr
+    state: present
+    comment: sonarr user
+    groups: docker
+    append: yes
+
+- name: Creat radarr user
+  user:
+    name: radarr
+    state: present
+    comment: radarr user
+    groups: docker
+    append: yes
+
+
+
+# Setup folders
+
+- name: Create sabnzbd volume
+  file:
+    path: /opt/sabnzbd
+    state: directory
+    owner: sabnzbd
+    group: docker
+    mode: '755'
+
+- name: Create sonarr volume
+  file:
+    path: /opt/sonarr
+    state: directory
+    owner: sonarr
+    group: docker
+    mode: '755'
+
+- name: Create radarr volume
+  file:
+    path: /opt/radarr
+    state: directory
+    owner: radarr
+    group: docker
+    mode: '755'
+
+
+
+
+
 
 
 
