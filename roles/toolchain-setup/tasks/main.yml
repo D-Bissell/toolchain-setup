@@ -1,0 +1,35 @@
+---
+# tasks file for toolchain-setup
+
+
+
+
+
+# Install docker
+
+
+# Pull images for
+# sabnzbd
+# sonarr
+# radarr
+
+
+# Setup paramaters for all of the above
+
+
+
+
+# Create containers for the above
+
+
+
+
+
+# Run containers
+
+
+
+
+
+
+

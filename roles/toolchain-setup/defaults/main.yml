@@ -1,0 +1,29 @@
+---
+# defaults file for toolchain-setup
+
+# Docker variables
+
+
+
+
+
+# Sabnzbd paramaters for docker create
+
+
+
+# Sonarr paramaters for docker create
+
+
+
+
+# Radarr paramaters for docker create
+
+
+
+
+
+
+
+
+
+
