@@ -1,0 +1,12 @@
+---
+
+# Runs the toolchain-setup role on localhsot machine
+
+- hosts: localhost
+  tasks:
+  - debug:
+      msg: "Debug message before running role"
+  - import_role:
+      name: toolchain-setup
+  - debug:
+      msg: "after we ran our role"
