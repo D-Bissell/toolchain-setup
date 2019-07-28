@@ -1,7 +1,5 @@
 ---
 
-
-
 # Install epel repo
 
 - name: Install EPEL repository
@@ -10,23 +8,14 @@
     state: latest
 
 
-#- name: Install software 
+- name: Install a list of packages
+  yum:
+    name:
+      - git
+      - ansible
+      - docker
+    state: present
 
-#- name: ensure a list of packages installed
-#  yum:
-#    name: "{{ packages }}"
-#  vars:
-#    packages:
-#    - httpd
-#    - httpd-tools
-
-
-# Install git
-
-
-#yum install git
-
-#yum update ansible
 
 #yum update
 
