@@ -35,9 +35,9 @@
 
 - name: Create users
   user:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
-    comment: {{ item }} user
+    comment: "{{ item }}" user
     groups: docker
     append: yes
   with_items:
