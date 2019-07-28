@@ -96,18 +96,18 @@
 #-p 8080:8080 -p 9090:9090 \
 #linuxserver/sabnzbd
 
-- name:
-  docker_container:
-    name: sabnzbd
-    image: linuxserver/sabnzbd
-    state: started
-    groups: ?
-    published_ports: 8080:8080
+#- name:
+#  docker_container:
+##    name: sabnzbd
+ #   image: linuxserver/sabnzbd
+ #   state: started
+ #   groups:
+ #   published_ports: 8080:8080
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
-    volumes:
-    - /opt/sabnzbd/config:/config
-    - /opt/sabnzbd/incomplete:/incomplete
-    - /opt/sabnzbd/completed:/completed
+#    volumes:
+#    - /opt/sabnzbd/config:/config
+#    - /opt/sabnzbd/incomplete:/incomplete
+#    - /opt/sabnzbd/completed:/completed
 
 
 
