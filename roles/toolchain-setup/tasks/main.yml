@@ -21,6 +21,8 @@
     state: started
     enabled: true
   become: true
+  tags:
+  - docker
 
 # Install pip with easy_install
 - name: Install pip
@@ -35,6 +37,8 @@
     state: latest
   loop:
     - docker
+  tags:
+  - docker
 
 # Add Media mount to FStab
 - name: Mount NAS Media folder to /mnt/Media
