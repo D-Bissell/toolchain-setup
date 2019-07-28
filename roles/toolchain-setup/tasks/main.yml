@@ -7,7 +7,7 @@
     name: epel-release
     state: latest
 
-
+# Install git, ansible, docker
 - name: Install a list of packages
   yum:
     name:
@@ -17,16 +17,17 @@
     state: present
 
 
-#yum update
-
-
-
 # Add Media mount to FStab
 #mount -t nfs nas:/volume1/Media /mnt/Media
 
+- name: Mount NAS Media folder to /mnt/Media
+  mount:
+      state: mounted
+      path: /mnt/Media 
+      src: nas:/volume1/Media
+      fstype: nfs
 
 # Create users & groups
-
 - name: Create users
   user:
     name: "{{ item }}"
@@ -56,12 +57,6 @@
 
 
 
-
-
-
-# Install docker
-
-
 # Pull images for
 # sabnzbd
 # sonarr
@@ -71,12 +66,7 @@
 # Setup paramaters for all of the above
 
 
-
-
 # Create containers for the above
-
-
-
 
 
 # Run containers
