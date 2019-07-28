@@ -4,31 +4,36 @@
 
 # Install epel repo
 
-#- name: Install EPEL repository
-#  yum:
-#    name: epel-release
-#    state: latest
+- name: Install EPEL repository
+  yum:
+    name: epel-release
+    state: latest
 
 
 #- name: Install software 
 
-
-# Add Media mount to FStab
-#mount -t nfs nas:/volume1/Media /mnt/Media
-
+#- name: ensure a list of packages installed
+#  yum:
+#    name: "{{ packages }}"
+#  vars:
+#    packages:
+#    - httpd
+#    - httpd-tools
 
 
 # Install git
 
-#yum install git
 
-#yum install epel-release
+#yum install git
 
 #yum update ansible
 
 #yum update
 
-#yum i
+
+
+# Add Media mount to FStab
+#mount -t nfs nas:/volume1/Media /mnt/Media
 
 
 # Create users & groups
