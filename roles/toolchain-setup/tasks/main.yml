@@ -19,6 +19,7 @@
   service:
     name: docker
     state: started
+    enabled: true
   become: true
 
 # Install pip with easy_install
@@ -80,12 +81,44 @@
     - linuxserver/sabnzbd
     - linuxserver/sonarr
     - linuxserver/radarr
+  tags:
+  - docker
 
 
 # Setup paramaters for all of the above
 
+#How do we create a container for sabnzbd?
+#
+#docker create --name=sabnzbd \
+# --restart="always" \
+#-e PGID=$gidnum -e PUID=$idnum \
+#-e TZ=America/Los_Angeles \
+#-p 8080:8080 -p 9090:9090 \
+#linuxserver/sabnzbd
+
+- name:
+  docker_container:
+    name: sabnzbd
+    image: linuxserver/sabnzbd
+    state: started
+    groups: ?
+    published_ports: 8080:8080
+#    pull: true     # Might be able to remove the docker_image task above if I set this?
+    volumes:
+    - /opt/sabnzbd/config:/config
+    - /opt/sabnzbd/incomplete:/incomplete
+    - /opt/sabnzbd/completed:/completed
+
+
+
+
 
 # Create containers for the above
+
+
+
+
+
 
 
 # Run containers
