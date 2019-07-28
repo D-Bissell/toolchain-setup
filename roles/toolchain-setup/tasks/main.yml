@@ -1,33 +1,49 @@
 ---
-# tasks file for toolchain-setup
+
+
+
+# Install epel repo
+
+#- name: Install EPEL repository
+#  yum:
+#    name: epel-release
+#    state: latest
+
+
+#- name: Install software 
+
+
+# Add Media mount to FStab
+#mount -t nfs nas:/volume1/Media /mnt/Media
+
+
+
+# Install git
+
+#yum install git
+
+#yum install epel-release
+
+#yum update ansible
+
+#yum update
+
+#yum i
 
 
 # Create users & groups
 
-- name: Creat sabnzbd user
+- name: Create users
   user:
-    name: sabnzbd
+    name: {{ item }}
     state: present
-    comment: sabnzbd user
+    comment: {{ item }} user
     groups: docker
     append: yes
-
-- name: Creat sonarr user
-  user:
-    name: sonarr
-    state: present
-    comment: sonarr user
-    groups: docker
-    append: yes
-
-- name: Creat radarr user
-  user:
-    name: radarr
-    state: present
-    comment: radarr user
-    groups: docker
-    append: yes
-
+  with_items:
+    - sabnzbd
+    - sonarr
+    - radarr
 
 
 # Setup folders
