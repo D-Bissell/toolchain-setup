@@ -6,11 +6,15 @@
     name: epel-release
     state: latest
 
+# Install pip with easy_install
+- easy_install:
+    name: pip
+    state: latest
+
 # Install git, ansible, docker
 - name: Install a list of packages
   yum:
     name:
-      - pip
       - git
       - ansible
       - docker
