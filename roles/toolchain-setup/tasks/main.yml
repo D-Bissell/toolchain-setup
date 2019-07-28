@@ -46,33 +46,19 @@
     - radarr
 
 
-# Setup folders
+# Setup application data folders
 
-- name: Create sabnzbd volume
+- name: Create users
   file:
-    path: /opt/sabnzbd
+    path: "/opt/{{ item }}"
     state: directory
-    owner: sabnzbd
+    owner: {{ item }}
     group: docker
     mode: '755'
-
-- name: Create sonarr volume
-  file:
-    path: /opt/sonarr
-    state: directory
-    owner: sonarr
-    group: docker
-    mode: '755'
-
-- name: Create radarr volume
-  file:
-    path: /opt/radarr
-    state: directory
-    owner: radarr
-    group: docker
-    mode: '755'
-
-
+  loop:
+    - sabnzbd
+    - sonarr
+    - radarr
 
 
 
