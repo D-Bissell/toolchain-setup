@@ -37,7 +37,7 @@
   user:
     name: "{{ item }}"
     state: present
-    comment: '"{{ item }}" user'
+    comment: "{{ item }} user"
     groups: "docker"
     append: yes
   loop:
@@ -48,11 +48,11 @@
 
 # Setup application data folders
 
-- name: Create users
+- name: Create application folders
   file:
     path: "/opt/{{ item }}"
     state: directory
-    owner: {{ item }}
+    owner: "{{ item }}"
     group: docker
     mode: '755'
   loop:
