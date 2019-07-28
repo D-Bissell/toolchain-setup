@@ -63,9 +63,9 @@
     name: "{{ item }}"
     source: pull
   loop:
-    linuxserver/sabnzbd
-    linuxserver/sonarr
-    linuxserver/radarr
+    - linuxserver/sabnzbd
+    - linuxserver/sonarr
+    - linuxserver/radarr
 
 
 # Setup paramaters for all of the above
