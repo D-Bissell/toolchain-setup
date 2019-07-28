@@ -94,11 +94,9 @@
 #How do we create a container for sabnzbd?
 #
 #docker create --name=sabnzbd \
-# --restart="always" \
 #-e PGID=$gidnum -e PUID=$idnum \
 #-e TZ=America/Los_Angeles \
-#-p 8080:8080 -p 9090:9090 \
-#linuxserver/sabnzbd
+
 
 # Create sabnzbd container
 - name:
@@ -107,7 +105,9 @@
     image: linuxserver/sabnzbd
     state: started
     groups:
-    published_ports: 8080:8080
+    published_ports: 
+    - 8080:8080
+    - 9090:9090
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
