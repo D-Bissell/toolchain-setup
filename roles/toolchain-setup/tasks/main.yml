@@ -1,7 +1,6 @@
 ---
 
 # Install epel repo
-
 - name: Install EPEL repository
   yum:
     name: epel-release
@@ -16,10 +15,13 @@
       - docker
     state: latest
 
+- name: Ensure docker deamon is running
+  service:
+    name: docker
+    state: started
+  become: true
 
 # Add Media mount to FStab
-#mount -t nfs nas:/volume1/Media /mnt/Media
-
 - name: Mount NAS Media folder to /mnt/Media
   mount:
       state: mounted
@@ -42,7 +44,6 @@
 
 
 # Setup application data folders
-
 - name: Create application folders
   file:
     path: "/opt/{{ item }}"
@@ -54,7 +55,6 @@
     - sabnzbd
     - sonarr
     - radarr
-
 
 
 # Pull images for
@@ -70,5 +70,10 @@
 
 
 # Run containers
-
+#- name: Ensure My docker container is running
+#  docker_container:
+#    name: testing
+#    image: busybox
+#    state: started
+#  become: true
 
