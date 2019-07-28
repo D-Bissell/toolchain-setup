@@ -1,6 +1,6 @@
 ---
 
-# Runs the toolchain-setup role on localhsot machine
+# Runs the toolchain-setup role on localhost machine
 
 - hosts: localhost
   tasks:

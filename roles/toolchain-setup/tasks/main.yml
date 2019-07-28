@@ -14,7 +14,7 @@
       - git
       - ansible
       - docker
-    state: present
+    state: latest
 
 
 # Add Media mount to FStab
