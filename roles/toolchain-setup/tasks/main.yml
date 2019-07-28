@@ -57,10 +57,15 @@
     - radarr
 
 
-# Pull images for
-# sabnzbd
-# sonarr
-# radarr
+# Pull docker images for sabnzbd, sonarr, radarr
+- name: Pull docker images for sabnzbd, sonarr, radarr
+  docker_image:
+    name: "{{ item }}"
+    source: pull
+  loop:
+    linuxserver/sabnzbd
+    linuxserver/sonarr
+    linuxserver/radarr
 
 
 # Setup paramaters for all of the above
