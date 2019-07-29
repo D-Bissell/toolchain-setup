@@ -89,19 +89,19 @@
     - radarr
 
 # Create sabnzbd folders & volumes
-- name: Create sabnzbd folders for container volumes
-  file:
-    path: "{{ item }}"
-    state: directory
-    owner: sabnzbd
-    group: docker
-    mode: '755'
-  loop:
-    - /opt/sabnzbd/config
-    - /opt/sabnzbd/incomplete
-    - /opt/sabnzbd/completed
-  tags:
-    - sabnzbd
+#- name: Create sabnzbd folders for container volumes
+#  file:
+#    path: "{{ item }}"
+#    state: directory
+#    owner: sabnzbd
+#    group: docker
+#    mode: '755'
+#  loop:
+#    - /opt/sabnzbd/config
+#    - /opt/sabnzbd/incomplete
+#    - /opt/sabnzbd/completed
+#  tags:
+#    - sabnzbd
 
 
 # Pull docker images for sabnzbd, sonarr, radarr
@@ -143,8 +143,10 @@
     - /opt/sabnzbd/config:/config
     - /opt/sabnzbd/incomplete:/incomplete
     - /opt/sabnzbd/completed:/completed
-    environment:
+    env:
       - TZ=Australia/Sydney
+      - PGID=1001
+      - PGID=1001
   tags:
     - docker
     - sabnzbd
