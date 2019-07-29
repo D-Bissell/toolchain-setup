@@ -145,8 +145,8 @@
     - /opt/sabnzbd/completed:/completed
     env:
       TZ: Australia/Sydney
-      PUID: 1001
-      PGID: 1001
+      PUID: "1001"
+      PGID: "1001"
   tags:
     - docker
     - sabnzbd
