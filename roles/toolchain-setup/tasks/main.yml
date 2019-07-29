@@ -144,9 +144,9 @@
     - /opt/sabnzbd/incomplete:/incomplete
     - /opt/sabnzbd/completed:/completed
     env:
-      - TZ=Australia/Sydney
-      - PGID=1001
-      - PGID=1001
+      TZ: Australia/Sydney
+      PUID: 1001
+      PGID: 1001
   tags:
     - docker
     - sabnzbd
