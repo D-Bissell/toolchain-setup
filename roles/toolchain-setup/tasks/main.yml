@@ -136,8 +136,8 @@
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
     - /opt/sabnzbd/config:/config
-    - /opt/sabnzbd/incomplete:/incomplete
-    - /opt/sabnzbd/completed:/completed
+    - /opt/sabnzbd/incomplete-downloads:/incomplete-downloads
+    - /opt/sabnzbd/downloads:/downloads
     env:
       TZ: Australia/Sydney
 #      PUID: "1001"
