@@ -122,11 +122,6 @@
 
 # Setup paramaters for all of the above
 
-#How do we create a container for sabnzbd?
-#
-#docker create --name=sabnzbd \
-#-e PGID=$gidnum -e PUID=$idnum \
-#-e TZ=America/Los_Angeles \
 
 # Create sabnzbd container
 - name:
@@ -145,8 +140,8 @@
     - /opt/sabnzbd/completed:/completed
     env:
       TZ: Australia/Sydney
-      PUID: "1001"
-      PGID: "1001"
+#      PUID: "1001"
+#      PGID: "1001"
   tags:
     - docker
     - sabnzbd
