@@ -72,7 +72,7 @@
 
 
 # Setup application data folders
-- name: Create application folders
+- name: Create folders for container volumes
   file:
     path: "/opt/{{ item }}"
     state: directory
@@ -89,7 +89,7 @@
     - radarr
 
 # Create sabnzbd folders & volumes
-- name: Create application folders
+- name: Create sabnzbd folders for container volumes
   file:
     path: "{{ item }}"
     state: directory
@@ -101,7 +101,7 @@
     - /opt/sabnzbd/incomplete
     - /opt/sabnzbd/completed
   tags:
-    - sonarr
+    - sabnzbd
 
 
 # Pull docker images for sabnzbd, sonarr, radarr
