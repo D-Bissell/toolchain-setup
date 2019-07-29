@@ -1,5 +1,10 @@
 ---
 
+# Debug message for cs_volume:
+- name:
+  debug:
+    var: "{{ volumes }}"
+
 # Install epel repo
 - name: Install EPEL repository
   yum:
@@ -43,10 +48,10 @@
 # Add Media mount to FStab
 - name: Mount NAS Media folder to /mnt/Media
   mount:
-      state: mounted
-      path: /mnt/Media 
-      src: nas:/volume1/Media
-      fstype: nfs
+    state: mounted
+    path: /mnt/Media 
+    src: nas:/volume1/Media
+    fstype: nfs
 
 # Create users & groups
 - name: Create users
@@ -97,14 +102,14 @@
 #-e PGID=$gidnum -e PUID=$idnum \
 #-e TZ=America/Los_Angeles \
 
-
 # Create sabnzbd container
 - name:
   docker_container:
     name: sabnzbd
     image: linuxserver/sabnzbd
     state: started
-    groups:
+    user: 1001
+    group: 1001
     published_ports: 
     - 8080:8080
     - 9090:9090
