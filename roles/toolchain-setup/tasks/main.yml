@@ -3,7 +3,7 @@
 # Debug message for cs_volume:
 - name:
   debug:
-    var: "{{ volumes }}"
+    msg: "{{ volumes }}"
 
 # Install epel repo
 - name: Install EPEL repository
@@ -11,13 +11,55 @@
     name: epel-release
     state: latest
 
+- name: Remove docker if installed from CentOS repo
+  yum:
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-engine
+    state: removed
+
+
+# Install docker CE
+#- name: install docker pre-requisites
+#  yum:
+#    name: 
+#      - yum-utils
+#      - device-mapper-persistent-data
+#      - lvm2
+#    state: latest
+
+- name: Set up the Docker CE repository
+  yum_repository:
+    name: docker-ce-stable
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+  become: yes
+
+- name: Install Docker CE
+  yum:
+    name:
+      - docker-ce
+      - docker-ce-cli
+#      - containerd.io
+  become: yes
+
+#https://download.docker.com/linux/centos/docker-ce.repo
+
 # Install git, ansible, docker
 - name: Install a list of packages
   yum:
     name:
       - git
       - ansible
-      - docker
     state: latest
 
 - name: Ensure docker deamon is running
