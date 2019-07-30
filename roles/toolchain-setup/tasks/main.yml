@@ -80,11 +80,11 @@
     group: docker
     mode: '755'
   loop:
-    - sabnzbd
+#    - sabnzbd
     - sonarr
     - radarr
   tags:
-    - sabnzbd
+#    - sabnzbd
     - sonarr
     - radarr
 
