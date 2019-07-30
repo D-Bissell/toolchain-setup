@@ -142,10 +142,12 @@
       TZ: Australia/Sydney
       PUID: "1001"
       PGID: "1001"
+    userns_mode: host
   tags:
     - docker
     - sabnzbd
 
+#--userns=host
 
 
 # Run containers
