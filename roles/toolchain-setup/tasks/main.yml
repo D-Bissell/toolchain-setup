@@ -49,10 +49,8 @@
     name:
       - docker-ce
       - docker-ce-cli
-#      - containerd.io
+      - containerd.io
   become: yes
-
-#https://download.docker.com/linux/centos/docker-ce.repo
 
 # Install git, ansible, docker
 - name: Install a list of packages
@@ -166,7 +164,7 @@
 
 
 # Create sabnzbd container
-- name:
+- name: Create and run sabnzbd container
   docker_container:
     name: sabnzbd
     image: linuxserver/sabnzbd
