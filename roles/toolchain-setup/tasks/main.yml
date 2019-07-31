@@ -104,24 +104,6 @@
     - radarr
 
 
-# # Setup application data folders
-# - name: Create folders for container volumes
-#   file:
-#     path: "/opt/{{ item }}"
-#     state: directory
-#     owner: "{{ item }}"
-#     group: docker
-#     mode: '755'
-#   loop:
-# #    - sabnzbd
-#     - sonarr
-#     - radarr
-#   tags:
-# #    - sabnzbd
-#     - sonarr
-#     - radarr
-
-
 # Pull docker images for sabnzbd, sonarr, radarr
 - name: Pull docker images for sabnzbd, sonarr, radarr
   docker_image:
@@ -162,4 +144,24 @@
     - docker
     - sabnzbd
 
-
+# Create sonarr container
+- name: Create and run sonarr container
+  docker_container:
+    name: sonarr
+    image: linuxserver/sonarr
+    state: started
+    published_ports: 
+    - 8089:8089
+    restart_policy: always
+#    pull: true     # Might be able to remove the docker_image task above if I set this?
+    volumes:
+    - /opt/sonarr/config:/config
+    - /mnt/Media/TV Series:/tv
+    - /opt/sabnzbd/downloads:/downloads # Sabnzbd completed download folder
+    env:
+      TZ: Australia/Sydney
+      PUID: "1002"
+      PGID: "1002"
+  tags:
+    - docker
+    - sonarr
