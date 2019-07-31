@@ -6,6 +6,13 @@
 
 
 
+# Local folders to create for container volumes
+volumes: 
+  - /opt/sabnzbd
+  - /opt/sabnzbd/config
+  - /opt/sabnzbd/complete
+  - /opt/sabnzbd/incomplete
+
 
 # Sabnzbd paramaters for docker create
 

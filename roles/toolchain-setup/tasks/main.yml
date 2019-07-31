@@ -6,13 +6,51 @@
     name: epel-release
     state: latest
 
-# Install git, ansible, docker
-- name: Install a list of packages
+- name: Remove docker if installed from CentOS repo
+  yum:
+    name:
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-latest-logrotate
+      - docker-logrotate
+      - docker-engine
+    state: removed
+
+- name: Set up the Docker CE repository
+  yum_repository:
+    name: docker-ce-stable
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/centos/7/$basearch/stable
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.docker.com/linux/centos/gpg
+  become: yes
+
+- name: Install docker pre-requisites
+  yum:
+    name: 
+      - yum-utils
+      - device-mapper-persistent-data # this gets installed by the below task anyway.
+#      - lvm2
+    state: latest
+
+- name: Install Docker CE
+  yum:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+  become: yes
+
+# Install git, ansible
+- name: Install git & ansible
   yum:
     name:
       - git
       - ansible
-      - docker
     state: latest
 
 - name: Ensure docker deamon is running
@@ -43,10 +81,10 @@
 # Add Media mount to FStab
 - name: Mount NAS Media folder to /mnt/Media
   mount:
-      state: mounted
-      path: /mnt/Media 
-      src: nas:/volume1/Media
-      fstype: nfs
+    state: mounted
+    path: /mnt/Media 
+    src: nas:/volume1/Media
+    fstype: nfs
 
 # Create users & groups
 - name: Create users
@@ -60,20 +98,28 @@
     - sabnzbd
     - sonarr
     - radarr
-
-
-# Setup application data folders
-- name: Create application folders
-  file:
-    path: "/opt/{{ item }}"
-    state: directory
-    owner: "{{ item }}"
-    group: docker
-    mode: '755'
-  loop:
+  tags:
     - sabnzbd
     - sonarr
     - radarr
+
+
+# # Setup application data folders
+# - name: Create folders for container volumes
+#   file:
+#     path: "/opt/{{ item }}"
+#     state: directory
+#     owner: "{{ item }}"
+#     group: docker
+#     mode: '755'
+#   loop:
+# #    - sabnzbd
+#     - sonarr
+#     - radarr
+#   tags:
+# #    - sabnzbd
+#     - sonarr
+#     - radarr
 
 
 # Pull docker images for sabnzbd, sonarr, radarr
@@ -87,49 +133,33 @@
     - linuxserver/radarr
   tags:
   - docker
+  - sabnzbd
+  - sonarr
+  - radarr
 
 
-# Setup paramaters for all of the above
-
-#How do we create a container for sabnzbd?
-#
-#docker create --name=sabnzbd \
-# --restart="always" \
-#-e PGID=$gidnum -e PUID=$idnum \
-#-e TZ=America/Los_Angeles \
-#-p 8080:8080 -p 9090:9090 \
-#linuxserver/sabnzbd
-
-#- name:
-#  docker_container:
-##    name: sabnzbd
- #   image: linuxserver/sabnzbd
- #   state: started
- #   groups:
- #   published_ports: 8080:8080
+# Create sabnzbd container
+- name: Create and run sabnzbd container
+  docker_container:
+    name: sabnzbd
+    image: linuxserver/sabnzbd
+    state: started
+    published_ports: 
+    - 8080:8080
+    - 9090:9090
+    restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
-#    volumes:
-#    - /opt/sabnzbd/config:/config
-#    - /opt/sabnzbd/incomplete:/incomplete
-#    - /opt/sabnzbd/completed:/completed
+    volumes:
+    - /opt/sabnzbd/config:/config
+    - /opt/sabnzbd/incomplete-downloads:/incomplete-downloads
+    - /opt/sabnzbd/downloads:/downloads
+    env:
+      TZ: Australia/Sydney
+      PUID: "1001"
+      PGID: "1001"
+    userns_mode: host
+  tags:
+    - docker
+    - sabnzbd
 
-
-
-
-
-# Create containers for the above
-
-
-
-
-
-
-
-# Run containers
-#- name: Ensure My docker container is running
-#  docker_container:
-#    name: testing
-#    image: busybox
-#    state: started
-#  become: true
 
