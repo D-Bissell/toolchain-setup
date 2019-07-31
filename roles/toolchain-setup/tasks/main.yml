@@ -1,10 +1,5 @@
 ---
 
-# Debug message for cs_volume:
-- name:
-  debug:
-    msg: "{{ volumes }}"
-
 # Install epel repo
 - name: Install EPEL repository
   yum:
@@ -109,37 +104,22 @@
     - radarr
 
 
-# Setup application data folders
-- name: Create folders for container volumes
-  file:
-    path: "/opt/{{ item }}"
-    state: directory
-    owner: "{{ item }}"
-    group: docker
-    mode: '755'
-  loop:
-#    - sabnzbd
-    - sonarr
-    - radarr
-  tags:
-#    - sabnzbd
-    - sonarr
-    - radarr
-
-# Create sabnzbd folders & volumes
-#- name: Create sabnzbd folders for container volumes
-#  file:
-#    path: "{{ item }}"
-#    state: directory
-#    owner: sabnzbd
-#    group: docker
-#    mode: '755'
-#  loop:
-#    - /opt/sabnzbd/config
-#    - /opt/sabnzbd/incomplete
-#    - /opt/sabnzbd/completed
-#  tags:
-#    - sabnzbd
+# # Setup application data folders
+# - name: Create folders for container volumes
+#   file:
+#     path: "/opt/{{ item }}"
+#     state: directory
+#     owner: "{{ item }}"
+#     group: docker
+#     mode: '755'
+#   loop:
+# #    - sabnzbd
+#     - sonarr
+#     - radarr
+#   tags:
+# #    - sabnzbd
+#     - sonarr
+#     - radarr
 
 
 # Pull docker images for sabnzbd, sonarr, radarr
@@ -156,9 +136,6 @@
   - sabnzbd
   - sonarr
   - radarr
-
-
-# Setup paramaters for all of the above
 
 
 # Create sabnzbd container
@@ -185,14 +162,4 @@
     - docker
     - sabnzbd
 
-#--userns=host
-
-
-# Run containers
-#- name: Ensure My docker container is running
-#  docker_container:
-#    name: testing
-#    image: busybox
-#    state: started
-#  become: true
 
