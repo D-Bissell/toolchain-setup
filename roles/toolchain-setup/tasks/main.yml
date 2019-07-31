@@ -37,8 +37,8 @@
 - name: Install docker pre-requisites
   yum:
     name: 
-#      - yum-utils
-      - device-mapper-persistent-data
+      - yum-utils
+      - device-mapper-persistent-data # this gets installed by the below task anyway.
 #      - lvm2
     state: latest
 
