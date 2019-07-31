@@ -24,16 +24,6 @@
       - docker-engine
     state: removed
 
-
-# Install docker CE
-#- name: install docker pre-requisites
-#  yum:
-#    name: 
-#      - yum-utils
-#      - device-mapper-persistent-data
-#      - lvm2
-#    state: latest
-
 - name: Set up the Docker CE repository
   yum_repository:
     name: docker-ce-stable
@@ -44,6 +34,14 @@
     gpgkey: https://download.docker.com/linux/centos/gpg
   become: yes
 
+- name: Install docker pre-requisites
+  yum:
+    name: 
+#      - yum-utils
+      - device-mapper-persistent-data
+#      - lvm2
+    state: latest
+
 - name: Install Docker CE
   yum:
     name:
@@ -52,8 +50,8 @@
       - containerd.io
   become: yes
 
-# Install git, ansible, docker
-- name: Install a list of packages
+# Install git, ansible
+- name: Install git & ansible
   yum:
     name:
       - git
