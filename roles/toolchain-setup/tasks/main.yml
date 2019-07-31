@@ -151,7 +151,7 @@
     image: linuxserver/sonarr
     state: started
     published_ports: 
-    - 8089:8089
+    - 8989:8989
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
@@ -165,3 +165,6 @@
   tags:
     - docker
     - sonarr
+
+
+linuxserver/sonarr:latest
