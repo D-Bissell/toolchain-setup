@@ -134,7 +134,7 @@
     volumes:
     - /opt/sabnzbd/config:/config
     - /opt/sabnzbd/incomplete-downloads:/incomplete-downloads
-    - /opt/sabnzbd/downloads:/downloads
+    - /mnt/Media/Downloads:/downloads
     env:
       TZ: Australia/Sydney
       PUID: "1001"
@@ -157,7 +157,7 @@
     volumes:
     - /opt/sonarr/config:/config
     - /mnt/Media/TV Series:/tv
-    - /opt/sabnzbd/downloads:/downloads # Sabnzbd completed download folder
+    - /mnt/Media/Downloads:/downloads # Sabnzbd completed download folder
     env:
       TZ: Australia/Sydney
       PUID: "1002"
