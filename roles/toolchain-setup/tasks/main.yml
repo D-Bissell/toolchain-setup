@@ -166,3 +166,24 @@
     - docker
     - sonarr
 
+# Create sonarr container
+- name: Create and run radarr container
+  docker_container:
+    name: radarr
+    image: linuxserver/radarr
+    state: started
+    published_ports: 
+    - 7878:7878
+    restart_policy: always
+#    pull: true     # Might be able to remove the docker_image task above if I set this?
+    volumes:
+    - /opt/radarr/config:/config
+    - /mnt/Media/Movies:/movies
+    - /mnt/Media/Downloads:/downloads # Sabnzbd completed download folder
+    env:
+      TZ: Australia/Sydney
+      PUID: "1003"
+      PGID: "1003"
+  tags:
+    - docker
+    - radarr
