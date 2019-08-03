@@ -133,7 +133,7 @@
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
     - /opt/sabnzbd/config:/config
-    - /opt/sabnzbd/incomplete-downloads:/incomplete-downloads
+    - /mnt/Media/Downloads/incomplete:/incomplete-downloads
     - /mnt/Media/Downloads:/downloads
     env:
       TZ: Australia/Sydney
@@ -156,8 +156,8 @@
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
     - /opt/sonarr/config:/config
-    - /mnt/Media/TV Series:/tv
     - /mnt/Media/Downloads:/downloads # Sabnzbd completed download folder
+    - /mnt/Media/TV Series:/tv
     env:
       TZ: Australia/Sydney
       PUID: "1002"
@@ -178,8 +178,8 @@
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
     - /opt/radarr/config:/config
-    - /mnt/Media/Movies:/movies
     - /mnt/Media/Downloads:/downloads # Sabnzbd completed download folder
+    - /mnt/Media/Movies:/movies
     env:
       TZ: Australia/Sydney
       PUID: "1003"
