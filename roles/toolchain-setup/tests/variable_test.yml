@@ -8,9 +8,8 @@
   # - debug:
   #     msg: "volumes variable: {{ volumes }}"
   #     ignore_errors: yes
-  # - debug:
-  #     msg: "sab variable: {{volumes.sabnzbd }}"
-  #     ignore_errors: yes
+  - debug:
+       msg: "sab variable: {{volumes.sabnzbd }}"
   - debug:
       msg: "sab config variable: {{volumes.sabnzbd.config }}"
 
