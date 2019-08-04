@@ -6,7 +6,7 @@
   - debug:
       var: media_root_path # not required. A variable name to debug.  Mutually exclusive with the 'msg' option.
   - debug:
-    msg: "volumes variable: {{ volumes }}"
+      msg: "volumes variable: {{ volumes }}"
   - debug:
        msg: "sab variable: {{volumes.sabnzbd }}"
   - debug:
