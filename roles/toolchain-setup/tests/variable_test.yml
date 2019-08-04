@@ -2,11 +2,14 @@
 - hosts: localhost
   tasks:
   - include_vars:
-      file: defaults/main.yml # not required. The file name from which variables should be loaded.,If the path is relative, it will look for the file in vars/ subdirectory of a role or relative to playbook.
+      file: ../defaults/main.yml # not required. The file name from which variables should be loaded.,If the path is relative, it will look for the file in vars/ subdirectory of a role or relative to playbook.
+  - debug:
+      var: media_root_path # not required. A variable name to debug.  Mutually exclusive with the 'msg' option.
   - debug:
       var: volumes
   - debug:
-      var: media_root_path # not required. A variable name to debug.  Mutually exclusive with the 'msg' option.
+      var: volumes.sabnzbd      
+
 
 
 
