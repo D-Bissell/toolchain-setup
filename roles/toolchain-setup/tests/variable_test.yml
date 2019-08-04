@@ -5,14 +5,16 @@
       file: ../defaults/main.yml # not required. The file name from which variables should be loaded.,If the path is relative, it will look for the file in vars/ subdirectory of a role or relative to playbook.
   - debug:
       var: media_root_path # not required. A variable name to debug.  Mutually exclusive with the 'msg' option.
-  # - debug:
-  #     msg: "volumes variable: {{ volumes }}"
-  #     ignore_errors: yes
+  - debug:
+    msg: "volumes variable: {{ volumes }}"
   - debug:
        msg: "sab variable: {{volumes.sabnzbd }}"
   - debug:
       msg: "sab config variable: {{volumes.sabnzbd.config }}"
-
+  - debug:
+      msg: "sab sonarr variable: {{volumes.sonarr.config }}"
+  - debug:
+      msg: "sab sonarr completed downloads variable: {{volumes.sabnzbd.completed_downloads }}"
 
 
 
