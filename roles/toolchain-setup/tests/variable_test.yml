@@ -9,6 +9,8 @@
       msg: "volumes variable: {{ volumes }}"
   - debug:
       var: "sab variable: {{volumes.sabnzbd }}"
+  - debug:
+      var: "sab config variable: {{volumes.sabnzbd.config }}"
 
 
 
