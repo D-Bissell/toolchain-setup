@@ -157,7 +157,7 @@
     volumes:
     - "{{ volumes.sonarr.config }}:/config"
     - "{{ volumes.sabnzbd.completed_downloads }}:/downloads" # Sabnzbd completed download folder
-    - "{{ volumes.sonarr.tv_shows }}/TV Series:/tv"
+    - "{{ volumes.sonarr.tv_shows }}:/tv"
     env:
       TZ: Australia/Sydney
       PUID: "1002"
@@ -179,7 +179,7 @@
     volumes:
     - "{{ volumes.radarr.config }}:/config"
     - "{{ volumes.sabnzbd.completed_downloads }}:/downloads" # Sabnzbd completed download folder
-    - "{{ volumes.radarr.movies }}/Movies:/movies"
+    - "{{ volumes.radarr.movies }}:/movies"
     env:
       TZ: Australia/Sydney
       PUID: "1003"
