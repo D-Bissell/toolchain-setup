@@ -15,19 +15,5 @@
       msg: "sab sonarr variable: {{volumes.sonarr.config }}"
   - debug:
       msg: "sab sonarr completed downloads variable: {{volumes.sabnzbd.completed_downloads }}"
-
-
-
-# media_root_path:  /mnt/Media
-
-# # Local folders to create for container volumes
-
-# volumes:
-# - sabnzbd:
-#   config: /opt/sabnzbd/config
-#   incomplete_downloads: "{{ media_root_path }}/incomplete"
-#   completed_downloads: "{{ media_root_path }}/Downloads"
-# - sonarr:
-#   config: /opt/sonarr/config  
-# - radarr:
-#   config: /opt/radarr/config  
+  - debug:
+      var: volumes # not required. A variable name to debug.  Mutually exclusive with the 'msg' option.

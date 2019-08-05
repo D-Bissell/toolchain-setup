@@ -6,7 +6,10 @@ media_root_path:  /mnt/Media
 # Local folders to create for container volumes
 
 volumes:
-  sabnzbd: { config: /opt/sabnzbd/config, incomplete_downloads: "{{ media_root_path }}/incomplete", completed_downloads: "{{ media_root_path }}/Downloads" }
+  sabnzbd:
+  config: /opt/sabnzbd/config
+  incomplete_downloads: "{{ media_root_path }}/incomplete"
+  completed_downloads: "{{ media_root_path }}/Downloads"
   sonarr:
     config: /opt/sonarr/config  
   radarr:
