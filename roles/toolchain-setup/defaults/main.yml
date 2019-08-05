@@ -12,7 +12,7 @@ volumes:
     completed_downloads: "{{ media_root_path }}/Unsorted/complete"
   sonarr:
     config: /opt/sonarr/config
-    tv_shows: "{{ media_root_path }}/TV Shows"
+    tv_shows: "{{ media_root_path }}/TV Series"
   radarr:
     config: /opt/radarr/config
     movies: "{{ media_root_path }}/Movies"
