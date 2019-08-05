@@ -7,9 +7,9 @@ media_root_path:  /mnt/Media
 
 volumes:
   sabnzbd:
-  config: /opt/sabnzbd/config
-  incomplete_downloads: "{{ media_root_path }}/incomplete"
-  completed_downloads: "{{ media_root_path }}/Downloads"
+    config: /opt/sabnzbd/config
+    incomplete_downloads: "{{ media_root_path }}/incomplete"
+    completed_downloads: "{{ media_root_path }}/Downloads"
   sonarr:
     config: /opt/sonarr/config  
   radarr:
