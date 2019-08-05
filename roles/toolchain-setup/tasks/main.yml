@@ -132,9 +132,9 @@
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
-    - /opt/sabnzbd/config:/config
-    - /mnt/Media/Downloads/incomplete:/incomplete-downloads
-    - /mnt/Media/Downloads:/downloads
+    - "{{ volumes.sabnzbd.config }}:/config"
+    - "{{ volumes.sabnzbd.incomplete_downloads }}:/incomplete-downloads"
+    - "{{ volumes.sabnzbd.completed_downloads }}:/downloads"
     env:
       TZ: Australia/Sydney
       PUID: "1001"
@@ -155,9 +155,9 @@
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
-    - /opt/sonarr/config:/config
-    - /mnt/Media/Downloads:/downloads # Sabnzbd completed download folder
-    - /mnt/Media/TV Series:/tv
+    - "{{ volumes.sonarr.config }}:/config"
+    - "{{ volumes.sabnzbd.completed_downloads }}:/downloads" # Sabnzbd completed download folder
+    - "{{ volumes.sonarr.tv_shows }}/TV Series:/tv"
     env:
       TZ: Australia/Sydney
       PUID: "1002"
@@ -177,9 +177,9 @@
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
-    - /opt/radarr/config:/config
-    - /mnt/Media/Downloads:/downloads # Sabnzbd completed download folder
-    - /mnt/Media/Movies:/movies
+    - "{{ volumes.radarr.config }}:/config"
+    - "{{ volumes.sabnzbd.completed_downloads }}:/downloads" # Sabnzbd completed download folder
+    - "{{ volumes.radarr.movies }}/Movies:/movies"
     env:
       TZ: Australia/Sydney
       PUID: "1003"

@@ -8,12 +8,14 @@ media_root_path:  /mnt/Media
 volumes:
   sabnzbd:
     config: /opt/sabnzbd/config
-    incomplete_downloads: "{{ media_root_path }}/incomplete"
-    completed_downloads: "{{ media_root_path }}/Downloads"
+    incomplete_downloads: "{{ media_root_path }}/Unsorted/incomplete"
+    completed_downloads: "{{ media_root_path }}/Unsorted/complete"
   sonarr:
-    config: /opt/sonarr/config  
+    config: /opt/sonarr/config
+    tv_shows: "{{ /mnt/Media }}/TV Shows"
   radarr:
-    config: /opt/radarr/config  
+    config: /opt/radarr/config
+    movies: "{{ /mnt/Media }}/Movies"
 
 
 
