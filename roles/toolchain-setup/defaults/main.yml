@@ -1,34 +1,21 @@
 ---
 # defaults file for toolchain-setup
 
-# Docker variables
-
-
-
+media_root_path:  /mnt/Media
 
 # Local folders to create for container volumes
-volumes: 
-  - /opt/sabnzbd
-  - /opt/sabnzbd/config
-  - /opt/sabnzbd/complete
-  - /opt/sabnzbd/incomplete
 
-
-# Sabnzbd paramaters for docker create
-
-
-
-# Sonarr paramaters for docker create
-
-
-
-
-# Radarr paramaters for docker create
-
-
-
-
-
+volumes:
+  sabnzbd:
+    config: /opt/sabnzbd/config
+    incomplete_downloads: "{{ media_root_path }}/Unsorted/incomplete"
+    completed_downloads: "{{ media_root_path }}/Unsorted/complete"
+  sonarr:
+    config: /opt/sonarr/config
+    tv_shows: "{{ media_root_path }}/TV Series"
+  radarr:
+    config: /opt/radarr/config
+    movies: "{{ media_root_path }}/Movies"
 
 
 
