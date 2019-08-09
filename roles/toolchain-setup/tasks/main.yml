@@ -124,7 +124,7 @@
 - name: Create and run sabnzbd container
   docker_container:
     name: sabnzbd
-    image: {{ container_images.sabnzbd }}
+    image: "{{ container_images.sabnzbd }}"
     state: started
     published_ports: 
     - 8080:8080
@@ -148,7 +148,7 @@
 - name: Create and run sonarr container
   docker_container:
     name: sonarr
-    image: {{ container_images.sonarr }}
+    image: "{{ container_images.sonarr }}"
     state: started
     published_ports: 
     - 8989:8989
@@ -170,7 +170,7 @@
 - name: Create and run radarr container
   docker_container:
     name: radarr
-    image: {{ container_images.radarr }}
+    image: "{{ container_images.radarr }}"
     state: started
     published_ports: 
     - 7878:7878
