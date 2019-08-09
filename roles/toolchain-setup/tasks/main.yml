@@ -110,9 +110,9 @@
     name: "{{ item }}"
     source: pull
   loop:
-    - {{ container_images.sabnzbd }}
-    - {{ container_images.sonarr }}
-    - {{ container_images.radarr }}
+    - "{{ container_images.sabnzbd }}"
+    - "{{ container_images.radarr }}"
+    - "{{ container_images.sonarr }}"
   tags:
   - docker
   - sabnzbd
