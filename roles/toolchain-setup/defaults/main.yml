@@ -1,10 +1,13 @@
 ---
 # defaults file for toolchain-setup
 
+# Actual location of media files
+media_network_location: nas:/volume1/Media
+
+# Path to mount media files on local machine
 media_root_path:  /mnt/Media
 
-# Local folders to create for container volumes
-
+# Local folders for container volumes
 volumes:
   sabnzbd:
     config: /opt/sabnzbd/config
@@ -17,7 +20,11 @@ volumes:
     config: /opt/radarr/config
     movies: "{{ media_root_path }}/Movies"
 
-
-
+# Images to be used for container tools    
+container_images:
+  sabnzbd: linuxserver/sabnzbd
+  sonarr: linuxserver/sonarr
+  radarr: linuxserver/radarr
+  
 
 

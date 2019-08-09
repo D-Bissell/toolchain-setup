@@ -82,8 +82,8 @@
 - name: Mount NAS Media folder to /mnt/Media
   mount:
     state: mounted
-    path: /mnt/Media 
-    src: nas:/volume1/Media
+    path: "{{ media_root_path }}" 
+    src: "{{ media_network_location }}"
     fstype: nfs
 
 # Create users & groups
@@ -110,9 +110,9 @@
     name: "{{ item }}"
     source: pull
   loop:
-    - linuxserver/sabnzbd
-    - linuxserver/sonarr
-    - linuxserver/radarr
+    - "{{ container_images.sabnzbd }}"
+    - "{{ container_images.radarr }}"
+    - "{{ container_images.sonarr }}"
   tags:
   - docker
   - sabnzbd
@@ -124,7 +124,7 @@
 - name: Create and run sabnzbd container
   docker_container:
     name: sabnzbd
-    image: linuxserver/sabnzbd
+    image: "{{ container_images.sabnzbd }}"
     state: started
     published_ports: 
     - 8080:8080
@@ -148,7 +148,7 @@
 - name: Create and run sonarr container
   docker_container:
     name: sonarr
-    image: linuxserver/sonarr
+    image: "{{ container_images.sonarr }}"
     state: started
     published_ports: 
     - 8989:8989
@@ -170,7 +170,7 @@
 - name: Create and run radarr container
   docker_container:
     name: radarr
-    image: linuxserver/radarr
+    image: "{{ container_images.radarr }}"
     state: started
     published_ports: 
     - 7878:7878
