@@ -17,11 +17,13 @@
       - sonarr
       - radarr
     register: user_accounts
-    tags:
-      - sabnzbd
-      - sonarr
-      - radarr
+
+# user_accounts.results.uid is what we want
+# both 'name' and 'item' have the username to test for
 
   - name: Print registered variable
     debug:
-      var: user_accounts
+      var: user_accounts.results.sabnzbd.uid
+#    with_items: sabnzbd
+
+    
