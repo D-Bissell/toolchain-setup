@@ -2,23 +2,26 @@
 
 # Playbook to test creation of users and registration of variables
 
-- name: Create users
-  user:
-    name: "{{ item }}"
-    state: present
-    comment: "{{ item }} user"
-    groups: "docker"
-    append: yes
-  loop:
-    - sabnzbd
-    - sonarr
-    - radarr
-  regiter: {{ user_accounts }}
-  tags:
-    - sabnzbd
-    - sonarr
-    - radarr
+- name: Create users tests
+  hosts: localhost
+  tasks:
+  - name: Create users
+    user:
+      name: "{{ item }}"
+      state: present
+      comment: "{{ item }} user"
+      groups: "docker"
+      append: yes
+    loop:
+      - sabnzbd
+      - sonarr
+      - radarr
+    register: user_accounts
+    tags:
+      - sabnzbd
+      - sonarr
+      - radarr
 
-- name: Print registered variable
-  debug:
-    var: user_accounts
+  - name: Print registered variable
+    debug:
+      var: user_accounts
