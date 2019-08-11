@@ -23,7 +23,8 @@
 
   - name: Print registered variable
     debug:
-      var: user_accounts.results.sabnzbd.uid
-#    with_items: sabnzbd
+      msg: "User {{ user_accounts.results.name }} has uid {{ user_accounts.results.uid }}"
+    with_items: "{{ user_accounts.results }}"
+
 
     
