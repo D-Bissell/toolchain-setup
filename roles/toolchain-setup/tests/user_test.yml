@@ -32,6 +32,8 @@
 
   - name: Try print the username and group just for sonarr
     debug:
-      msg: "Sonarr username is {{ user_accounts.results[0].name }}"
+      #msg: "Sonarr username is {{ user_accounts.results[0].name }}"
+      msg: 'Sonarr username is {{ user_accounts.results | selectattr("name","equalto","sonarr") | map(attribute="uid")}}'
+    #when: 'sonarr' in (user_accounts.results | map(attribute='name') ) 
 
     
