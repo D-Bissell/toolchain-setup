@@ -27,7 +27,7 @@
 
   - name: Try print the user name and ID for each account
     debug:
-      msg: "User {{ item }} has uid {{ item.uid }}"
+      msg: "User {{ item.name }} has uid {{ item.uid }}"
     loop: "{{ user_accounts.results }}"
 
 
