@@ -98,6 +98,7 @@
     - sabnzbd
     - sonarr
     - radarr
+  register: user_accounts
   tags:
     - sabnzbd
     - sonarr
