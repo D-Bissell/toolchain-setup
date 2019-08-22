@@ -138,8 +138,8 @@
     - "{{ volumes.sabnzbd.completed_downloads }}:/downloads"
     env:
       TZ: Australia/Sydney
-      PUID: "1001"
-      PGID: "1001"
+      PUID: '{{ user_accounts.results | selectattr("name","equalto","sabnzbd") | map(attribute="uid") | first }}'
+      PGID: '{{ user_accounts.results | selectattr("name","equalto","sabnzbd") | map(attribute="group") | first }}'
     userns_mode: host
   tags:
     - docker
@@ -161,8 +161,8 @@
     - "{{ volumes.sonarr.tv_shows }}:/tv"
     env:
       TZ: Australia/Sydney
-      PUID: "1002"
-      PGID: "1002"
+      PUID: '{{ user_accounts.results | selectattr("name","equalto","sonarr") | map(attribute="uid") | first }}'
+      PGID: '{{ user_accounts.results | selectattr("name","equalto","sonarr") | map(attribute="group") | first }}'
   tags:
     - docker
     - sonarr
@@ -183,8 +183,8 @@
     - "{{ volumes.radarr.movies }}:/movies"
     env:
       TZ: Australia/Sydney
-      PUID: "1003"
-      PGID: "1003"
+      PUID: '{{ user_accounts.results | selectattr("name","equalto","radarr") | map(attribute="uid") | first }}'
+      PGID: '{{ user_accounts.results | selectattr("name","equalto","radarr") | map(attribute="group") | first }}'
   tags:
     - docker
     - radarr
