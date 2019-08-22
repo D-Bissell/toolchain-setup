@@ -21,9 +21,13 @@
 # user_accounts.results.uid is what we want
 # both 'name' and 'item' have the username to test for
 
-  - name: Print registered variable
+  - name: Print registered variable user_accounts
     debug:
-      msg: "User {{ name }} has uid {{ uid }}"
+      var: user_accounts
+
+  - name: Try print the user name and ID for each account
+    debug:
+      msg: "User {{ item }} has uid {{ item.uid }}"
     loop: "{{ user_accounts.results }}"
 
 
