@@ -79,7 +79,7 @@
   - docker
 
 # Add Media mount to FStab
-- name: Mount NAS Media folder to /mnt/Media
+- name: Mount NAS Media folder to local filesystem
   mount:
     state: mounted
     path: "{{ media_root_path }}" 
