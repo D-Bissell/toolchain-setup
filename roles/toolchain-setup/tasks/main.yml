@@ -196,7 +196,7 @@
     containers_filters:
       # only consider images created more than 2 weeks ago
       until: 336h
- tags:
+  tags:
     - docker
     - prune
     
