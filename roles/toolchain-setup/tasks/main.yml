@@ -188,3 +188,15 @@
   tags:
     - docker
     - radarr
+
+
+- name: Prune images older than 2 weeks
+  docker_prune:
+    images: yes
+    containers_filters:
+      # only consider images created more than 2 weeks ago
+      until: 336h
+ tags:
+    - docker
+    - prune
+    
