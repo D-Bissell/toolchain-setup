@@ -2,7 +2,7 @@
 # defaults file for toolchain-setup
 
 # Actual location of media files
-media_network_location: nas:/volume1/Media
+media_network_location: 192.168.1.50:/volume1/Media
 
 # Path to mount media files on local machine
 media_root_path:  /mnt/Media
