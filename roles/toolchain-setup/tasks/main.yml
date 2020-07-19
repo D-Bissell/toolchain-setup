@@ -85,6 +85,8 @@
     path: "{{ media_root_path }}" 
     src: "{{ media_network_location }}"
     fstype: nfs
+  tags:
+  - mount
 
 # Create users & groups
 - name: Create users
