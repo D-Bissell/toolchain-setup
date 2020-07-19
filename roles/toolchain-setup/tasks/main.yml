@@ -95,55 +95,53 @@
     groups: "docker"
     append: yes
   loop:
-    - sabnzbd
+    - nzbget
     - sonarr
     - radarr
   register: user_accounts
   tags:
-    - sabnzbd
+    - nzbget
     - sonarr
     - radarr
 
 
-# Pull docker images for sabnzbd, sonarr, radarr
-- name: Pull docker images for sabnzbd, sonarr, radarr
+# Pull docker images for nzbget, sonarr, radarr
+- name: Pull docker images for nzbget, sonarr, radarr
   docker_image:
     name: "{{ item }}"
     source: pull
   loop:
-    - "{{ container_images.sabnzbd }}"
+    - "{{ container_images.nzbget }}"
     - "{{ container_images.radarr }}"
     - "{{ container_images.sonarr }}"
   tags:
   - docker
-  - sabnzbd
+  - nzbget
   - sonarr
   - radarr
 
 
-# Create sabnzbd container
-- name: Create and run sabnzbd container
+# Create nzbget container
+- name: Create and run nzbget container
   docker_container:
-    name: sabnzbd
-    image: "{{ container_images.sabnzbd }}"
+    name: nzbget
+    image: "{{ container_images.nzbget }}"
     state: started
     published_ports: 
-    - 8080:8080
-    - 9090:9090
+    - 6789:6789
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
-    - "{{ volumes.sabnzbd.config }}:/config"
-    - "{{ volumes.sabnzbd.incomplete_downloads }}:/incomplete-downloads"
-    - "{{ volumes.sabnzbd.completed_downloads }}:/downloads"
+    - "{{ volumes.nzbget.config }}:/config"
+    - "{{ volumes.nzbget.downloads }}:/downloads"
     env:
       TZ: Australia/Sydney
-      PUID: '{{ user_accounts.results | selectattr("name","equalto","sabnzbd") | map(attribute="uid") | first }}'
-      PGID: '{{ user_accounts.results | selectattr("name","equalto","sabnzbd") | map(attribute="group") | first }}'
+      PUID: '{{ user_accounts.results | selectattr("name","equalto","nzbget") | map(attribute="uid") | first }}'
+      PGID: '{{ user_accounts.results | selectattr("name","equalto","nzbget") | map(attribute="group") | first }}'
     userns_mode: host
   tags:
     - docker
-    - sabnzbd
+    - nzbget
 
 # Create sonarr container
 - name: Create and run sonarr container
@@ -157,7 +155,7 @@
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
     - "{{ volumes.sonarr.config }}:/config"
-    - "{{ volumes.sabnzbd.completed_downloads }}:/downloads" # Sabnzbd completed download folder
+    - "{{ volumes.nzbget.downloads }}:/downloads" # nzbget completed download folder
     - "{{ volumes.sonarr.tv_shows }}:/tv"
     env:
       TZ: Australia/Sydney
@@ -167,7 +165,7 @@
     - docker
     - sonarr
 
-# Create sonarr container
+# Create radarr container
 - name: Create and run radarr container
   docker_container:
     name: radarr
@@ -179,7 +177,7 @@
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
     - "{{ volumes.radarr.config }}:/config"
-    - "{{ volumes.sabnzbd.completed_downloads }}:/downloads" # Sabnzbd completed download folder
+    - "{{ volumes.nzbget.downloads }}:/downloads" # nzbget completed download folder
     - "{{ volumes.radarr.movies }}:/movies"
     env:
       TZ: Australia/Sydney

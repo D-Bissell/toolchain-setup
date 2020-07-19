@@ -9,10 +9,9 @@ media_root_path:  /mnt/Media
 
 # Local folders for container volumes
 volumes:
-  sabnzbd:
-    config: /opt/sabnzbd/config
-    incomplete_downloads: "{{ media_root_path }}/Unsorted/incomplete"
-    completed_downloads: "{{ media_root_path }}/Unsorted/complete"
+  nzbget:
+    config: /opt/nzbget/config
+    downloads: "{{ media_root_path }}/Unsorted/complete"
   sonarr:
     config: /opt/sonarr/config
     tv_shows: "{{ media_root_path }}/TV Series"
@@ -22,7 +21,7 @@ volumes:
 
 # Images to be used for container tools    
 container_images:
-  sabnzbd: linuxserver/sabnzbd
+  nzbget: linuxserver/nzbget
   sonarr: linuxserver/sonarr
   radarr: linuxserver/radarr
   
