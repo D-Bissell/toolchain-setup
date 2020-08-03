@@ -43,6 +43,7 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+    state: latest
   become: yes
 
 # Install git, ansible
