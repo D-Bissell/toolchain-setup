@@ -3,6 +3,5 @@
 # Runs the toolchain-setup role on localhost machine
 
 - hosts: localhost
-  tasks:
-  - import_role:
-      name: toolchain-setup
+  roles:
+  - toolchain-setup
