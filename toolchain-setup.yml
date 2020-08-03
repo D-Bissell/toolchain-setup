@@ -2,6 +2,8 @@
 
 # Runs the toolchain-setup role on localhost machine
 
-- hosts: localhost
+- name: Install Toolchain on localhost
+  hosts: localhost
+  
   roles:
   - toolchain-setup
