@@ -107,6 +107,11 @@
     - sonarr
     - radarr
 
+# Create docker network
+- name: Create a docker network
+  docker_network:
+    name: network_one
+
 
 # Pull docker images for nzbget, sonarr, radarr
 - name: Pull docker images for nzbget, sonarr, radarr
@@ -131,7 +136,9 @@
     image: "{{ container_images.nzbget }}"
     state: started
     published_ports: 
-    - 6789:6789
+      - 6789:6789
+    networks:
+    - name: network_one
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
@@ -154,6 +161,8 @@
     state: started
     published_ports: 
     - 8989:8989
+    networks:
+    - name: network_one
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
@@ -176,6 +185,8 @@
     state: started
     published_ports: 
     - 7878:7878
+    networks:
+    - name: network_one
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
