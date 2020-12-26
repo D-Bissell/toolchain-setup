@@ -138,7 +138,7 @@
     published_ports: 
       - 6789:6789
     networks:
-    - network_one
+    - name: network_one
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
@@ -162,7 +162,7 @@
     published_ports: 
     - 8989:8989
     networks:
-    - network_one
+    - name: network_one
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
@@ -186,7 +186,7 @@
     published_ports: 
     - 7878:7878
     networks:
-    - network_one
+    - name: network_one
     restart_policy: always
 #    pull: true     # Might be able to remove the docker_image task above if I set this?
     volumes:
