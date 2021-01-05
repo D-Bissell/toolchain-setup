@@ -111,7 +111,9 @@
 - name: Create a docker network
   docker_network:
     name: network_one
-
+    state: present
+  tags:
+  - docker 
 
 # Pull docker images for nzbget, sonarr, radarr
 - name: Pull docker images for nzbget, sonarr, radarr
