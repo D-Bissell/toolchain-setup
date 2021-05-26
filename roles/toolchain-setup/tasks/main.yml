@@ -95,9 +95,9 @@
     path: "{{ item }}
     state: present
   loop:
-    - {{volumes.nzbget.downloads}}
-    - {{volumes.sonarr.tv_shows}}
-    - {{volumes.radarr.movies}}
+    - "{{ volumes.nzbget.downloads }}"
+    - "{{ volumes.sonarr.tv_shows }}"
+    - "{{ volumes.radarr.movies }}"
   tags:
     - paths
 
