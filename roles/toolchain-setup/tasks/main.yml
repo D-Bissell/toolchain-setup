@@ -89,6 +89,18 @@
   tags:
   - mount
 
+# Ensure download paths exist
+- name: Ensure download paths exist
+  file:
+    path: "{{ item }}
+    state: present
+  loop:
+    - {{volumes.nzbget.downloads}}
+    - {{volumes.sonarr.tv_shows}}
+    - {{volumes.radarr.movies}}
+  tags:
+    - paths
+
 # Create users & groups
 - name: Create users
   user:
