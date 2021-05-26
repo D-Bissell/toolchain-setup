@@ -92,7 +92,7 @@
 # Ensure download paths exist
 - name: Ensure download paths exist
   file:
-    path: "{{ item }}
+    path: "{{ item }}"
     state: present
   loop:
     - "{{ volumes.nzbget.downloads }}"
