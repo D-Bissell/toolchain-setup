@@ -11,7 +11,7 @@ media_root_path:  /mnt/Media
 volumes:
   nzbget:
     config: /opt/nzbget/config
-    downloads: "{{ media_root_path }}/Unsorted/complete"
+    downloads: "{{ media_root_path }}/nzbget/downloads"
   sonarr:
     config: /opt/sonarr/config
     tv_shows: "{{ media_root_path }}/TV Series"
