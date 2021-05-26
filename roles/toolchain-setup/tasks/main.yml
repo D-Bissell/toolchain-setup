@@ -93,7 +93,7 @@
 - name: Ensure download paths exist
   file:
     path: "{{ item }}"
-    state: present
+    state: directory
   loop:
     - "{{ volumes.nzbget.downloads }}"
     - "{{ volumes.sonarr.tv_shows }}"
